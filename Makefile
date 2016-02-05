@@ -6,7 +6,7 @@
 #    By: qdegraev <marvin@42.fr>                    +#+  +:+       +#+         #
 #                                                 +#+#+#+#+#+   +#+            #
 #    Created: 2015/12/07 08:41:32 by qdegraev          #+#    #+#              #
-#    Updated: 2015/12/11 19:03:26 by qdegraev         ###   ########.fr        #
+#    Updated: 2016/02/05 12:41:40 by qdegraev         ###   ########.fr        #
 #                                                                              #
 # **************************************************************************** #
 
@@ -14,7 +14,7 @@
 LIBPATH = libft
 LIB = $(LIBPATH)/libft.a
 
-NAME = libftprinft
+NAME = ft_prinft.a
 
 CC = gcc
 
@@ -22,14 +22,19 @@ CFLAGS = -Wall -Wextra -Werror -I libft
 
 LDFLAGS = -L libft -lft
 
-SRC = 
+SRC = ft_prinft.c 
 
 OBJ = $(SRC:.c=.o)
 
 all: $(LIB) $(NAME)
 
+%.o: %.c
+	$(CC) $(CFLAGS) -o $@ -c $<
+
 $(NAME): $(OBJ)
-	$(CC) $(LDFLAGS) -o $@ $^
+	ar rc $(NAME) $(OBJ)
+	ranlib $(NAME)
+	libtool -static -o libftprintf.a $(LIB) $(NAME)
 
 $(LIB):
 	make -C $(LIBPATH)
