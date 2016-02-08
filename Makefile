@@ -6,40 +6,37 @@
 #    By: qdegraev <marvin@42.fr>                    +#+  +:+       +#+         #
 #                                                 +#+#+#+#+#+   +#+            #
 #    Created: 2015/12/07 08:41:32 by qdegraev          #+#    #+#              #
-#    Updated: 2016/02/05 12:41:40 by qdegraev         ###   ########.fr        #
+#    Updated: 2016/02/08 12:35:54 by qdegraev         ###   ########.fr        #
 #                                                                              #
 # **************************************************************************** #
 
+NAME = ft_prinft
 
 LIBPATH = libft
 LIB = $(LIBPATH)/libft.a
 
-NAME = ft_prinft.a
-
 CC = gcc
 
-CFLAGS = -Wall -Wextra -Werror -I libft
+CFLAGS = -Wall -Wextra -Werror
 
 LDFLAGS = -L libft -lft
 
-SRC = ft_prinft.c 
+SRC = ft_printf.c 
 
 OBJ = $(SRC:.c=.o)
 
-all: $(LIB) $(NAME)
-
-%.o: %.c
-	$(CC) $(CFLAGS) -o $@ -c $<
+all: $(NAME) $(LIB)
 
 $(NAME): $(OBJ)
-	ar rc $(NAME) $(OBJ)
-	ranlib $(NAME)
-	libtool -static -o libftprintf.a $(LIB) $(NAME)
+	$(CC) $(CFLAGS) $(LDFLAGS) -o $@ $<
 
 $(LIB):
 	make -C $(LIBPATH)
 
-clean: $(OBJ)
+%.o: %.c
+	$(CC) $(CFLAGS) -c $<
+
+clean:
 	rm -f $(OBJ)
 
 fclean: clean

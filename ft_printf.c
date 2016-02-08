@@ -6,40 +6,125 @@
 /*   By: qdegraev <marvin@42.fr>                    +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2016/02/05 12:36:34 by qdegraev          #+#    #+#             */
-/*   Updated: 2016/02/05 14:22:49 by qdegraev         ###   ########.fr       */
+/*   Updated: 2016/02/08 20:45:57 by qdegraev         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
-#include <stdarg.h>
 #include <stdio.h>
+#include "ft_printf.h"
 
-void foo(char *fmt, ...)
+void	check_flags(char *format, t_arg *a)
 {
-	va_list		ap;
-	va_list		ap2;
-	int			d;
-	char		c;
-	char		*s;
+	if (format[a->i] == '-')
+	{
+		a->f_minest = 1;
+		(a->i)++;
+	}
+	if (format[a->i] == '+')
+	{
+		a->f_plus = 1;
+		(a->i)++;
+	}
+	if (format[a->i] == ' ')
+	{
+		a->f_space = 1;
+		(a->i)++;
+	}
+	if (format[a->i] == '#')
+	{
+		a->f_hash = 1;
+		(a->i)++;
+	}
+	check_min_lenght(format, a);
+}
 
-	va_start(ap, fmt);
-	va_copy(ap2, ap);
-	while (*fmt)
-		switch(*fmt++) {
-			case 's':                       /* string */
-				s = va_arg(ap, char *);
-				printf("string %s\n", s);
-				break;
-			case 'd':                       /* int */
-				d = va_arg(ap, int);
-				printf("int %d\n", d);
-				break;
-			case 'c':                       /* char */
-				/* Note: char is promoted to int. */
-				c = va_arg(ap, int);
-				printf("char %c\n", c);
-				break;
+void	check_min_lenght(char *format, t_arg *a)
+{
+	if (format[a->i] == 0)
+	{
+		a->l_zero = 1;
+		(a->i)++;
+	}
+	if (format[a->i] > '0' && format[a->i] <= '9')
+		a->l_lenght = ft_atoi(format + a->i);
+	while (format[a->i] > '0' && format[a->i] <= '9')
+		(a->i)++;
+	if (format[a->i] == '.')
+		check_precision(format, a);
+	else
+		check_modifier(format, a);
+}
+
+void	check_precision(char *format, t_arg *a)
+{
+	(a->i)++;
+	if (format[a->i] > '0' && format[a->i] <= '9')
+		a->p_precison = ft_atoi(format + a->i);
+	else
+	{
+		ft_putendl("erreur formatage precision");
+		exit(0);
+	}
+	while (format[a->i] > '0' && format[a->i] <= '9')
+		(a->i)++;
+}
+
+void	check_modifier(char *format, t_arg *a)
+{
+	check_type(format, a);
+}
+
+void	check_type(char *format, t_arg *a)
+{
+	if (format[a->i] == 's' || format[a->i] == 'S')
+		type_s(format[a->i], a);
+}
+
+void	type_s(char type, t_arg *a)
+{
+	if (type == 's')
+		ft_putstr(va_arg(a->ap, char *));
+	if (type == 'S')
+		ft_putstr(va_arg(a->ap, char *));
+}
+
+void	convert_arg_s(char *s)
+{
+	ft_putstr(s);
+}
+
+void	convert_arg_c(char c)
+{
+	ft_putchar(c);
+}
+
+void	convert_arg_d(int d)
+{
+	ft_putnbr(d);
+}
+
+void	ft_printf(char *format, ...)
+{
+	t_arg		a;
+	va_list		ap;
+
+	a.i = 0;
+	va_start(ap, format);
+	while (format[a.i])
+	{
+		if (format[a.i] == '%')
+		{
+			check_flags(format, &a);
 		}
+		else
+			ft_putchar(format[a.i]);
+		(a.i)++;
+	}
 	va_end(ap);
-		/* use ap2 to iterate over the arguments again */
-	va_end(ap2);
+}
+
+int	main(void)
+{
+	ft_printf("caca %d %s %c", 42, "boudin", 'p');
+	return (0);
 }
