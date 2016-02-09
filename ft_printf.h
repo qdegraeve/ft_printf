@@ -6,7 +6,7 @@
 /*   By: qdegraev <marvin@42.fr>                    +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2016/02/08 10:56:16 by qdegraev          #+#    #+#             */
-/*   Updated: 2016/02/08 20:40:59 by qdegraev         ###   ########.fr       */
+/*   Updated: 2016/02/09 15:44:22 by qdegraev         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -31,6 +31,7 @@ typedef struct		s_arg
 	int			p_precison;
 }					t_arg;
 
+void				type_d(char type, t_arg *a);
 void				convert_arg_s(char *s);
 void				convert_arg_c(char c);
 void				convert_arg_d(int);

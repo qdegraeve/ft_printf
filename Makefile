@@ -6,11 +6,11 @@
 #    By: qdegraev <marvin@42.fr>                    +#+  +:+       +#+         #
 #                                                 +#+#+#+#+#+   +#+            #
 #    Created: 2015/12/07 08:41:32 by qdegraev          #+#    #+#              #
-#    Updated: 2016/02/08 12:35:54 by qdegraev         ###   ########.fr        #
+#    Updated: 2016/02/09 19:12:57 by qdegraev         ###   ########.fr        #
 #                                                                              #
 # **************************************************************************** #
 
-NAME = ft_prinft
+NAME = ft_printf
 
 LIBPATH = libft
 LIB = $(LIBPATH)/libft.a
@@ -25,7 +25,7 @@ SRC = ft_printf.c
 
 OBJ = $(SRC:.c=.o)
 
-all: $(NAME) $(LIB)
+all: $(LIB) $(NAME)
 
 $(NAME): $(OBJ)
 	$(CC) $(CFLAGS) $(LDFLAGS) -o $@ $<
@@ -36,10 +36,12 @@ $(LIB):
 %.o: %.c
 	$(CC) $(CFLAGS) -c $<
 
-clean:
+clean: $(OBJ)
+	make clean -C $(LIBPATH)
 	rm -f $(OBJ)
 
 fclean: clean
+	make fclean -C $(LIBPATH)
 	rm -f $(NAME)
 
 re: fclean all
