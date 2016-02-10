@@ -6,7 +6,7 @@
 #    By: qdegraev <marvin@42.fr>                    +#+  +:+       +#+         #
 #                                                 +#+#+#+#+#+   +#+            #
 #    Created: 2015/12/07 08:41:32 by qdegraev          #+#    #+#              #
-#    Updated: 2016/02/10 13:33:07 by qdegraev         ###   ########.fr        #
+#    Updated: 2016/02/10 14:31:11 by qdegraev         ###   ########.fr        #
 #                                                                              #
 # **************************************************************************** #
 
@@ -24,18 +24,21 @@ CFLAGS = -Wall -Wextra -Werror
 LDFLAGS = -L libft -lft
 
 SRC = ft_printf.c \
-	  types.c \
-	  arg_length.c \
-	  flags.c \
+	types.c \
+	arg_length.c \
+	flags.c \
 
 OBJ = $(SRC:.c=.o)
 
-all: $(LIB) $(NAME) $(LIBPRINT)
+all: $(LIB) $(LIBPRINT) $(NAME)
 
-$(NAME): $(OBJ)
-	$(CC) $(CFLAGS) $(LDFLAGS) -o $@ $(OBJ)
+$(NAME): $(LIBPRINT)
+	$(CC) $(CFLAGS) $(LDFLAGS) -L. -lftprintf -o $@ main.c
 
-$(LIBPRINT):
+%.o: %.c
+	$(CC) $(CFLAGS) -o $@ -c $<
+
+$(LIBPRINT): $(OBJ)
 	ar rc temp.a $(OBJ)
 	ranlib temp.a
 	libtool -static -o $(LIBPRINT) $(LIB) temp.a
@@ -43,10 +46,7 @@ $(LIBPRINT):
 $(LIB):
 	make -C $(LIBPATH)
 
-%.o: %.c
-	$(CC) $(CFLAGS) -c $<
-
-clean: $(OBJ)
+clean:
 	make clean -C $(LIBPATH)
 	rm -f $(OBJ)
 

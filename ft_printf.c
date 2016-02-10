@@ -6,11 +6,10 @@
 /*   By: qdegraev <marvin@42.fr>                    +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2016/02/05 12:36:34 by qdegraev          #+#    #+#             */
-/*   Updated: 2016/02/10 12:15:07 by qdegraev         ###   ########.fr       */
+/*   Updated: 2016/02/10 14:29:06 by qdegraev         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
-#include <stdio.h>
 #include "ft_printf.h"
 
 void	check_modifier(char *format, t_arg *a)
@@ -85,11 +84,4 @@ void	ft_printf(char *format, ...)
 		a.i++;
 	}
 	va_end(a.ap);
-}
-
-int	main(void)
-{
-	ft_printf("ft_printf %-+-+2d boudin\n", -42);
-	printf("ab_printf %-+-+2d boudin\n", -42);
-	return (0);
 }
