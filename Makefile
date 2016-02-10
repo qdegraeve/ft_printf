@@ -6,11 +6,13 @@
 #    By: qdegraev <marvin@42.fr>                    +#+  +:+       +#+         #
 #                                                 +#+#+#+#+#+   +#+            #
 #    Created: 2015/12/07 08:41:32 by qdegraev          #+#    #+#              #
-#    Updated: 2016/02/09 19:12:57 by qdegraev         ###   ########.fr        #
+#    Updated: 2016/02/10 13:33:07 by qdegraev         ###   ########.fr        #
 #                                                                              #
 # **************************************************************************** #
 
 NAME = ft_printf
+
+LIBPRINT = libftprintf.a
 
 LIBPATH = libft
 LIB = $(LIBPATH)/libft.a
@@ -21,14 +23,22 @@ CFLAGS = -Wall -Wextra -Werror
 
 LDFLAGS = -L libft -lft
 
-SRC = ft_printf.c 
+SRC = ft_printf.c \
+	  types.c \
+	  arg_length.c \
+	  flags.c \
 
 OBJ = $(SRC:.c=.o)
 
-all: $(LIB) $(NAME)
+all: $(LIB) $(NAME) $(LIBPRINT)
 
 $(NAME): $(OBJ)
-	$(CC) $(CFLAGS) $(LDFLAGS) -o $@ $<
+	$(CC) $(CFLAGS) $(LDFLAGS) -o $@ $(OBJ)
+
+$(LIBPRINT):
+	ar rc temp.a $(OBJ)
+	ranlib temp.a
+	libtool -static -o $(LIBPRINT) $(LIB) temp.a
 
 $(LIB):
 	make -C $(LIBPATH)
@@ -42,7 +52,7 @@ clean: $(OBJ)
 
 fclean: clean
 	make fclean -C $(LIBPATH)
-	rm -f $(NAME)
+	rm -f $(NAME) $(LIBPRINT) temp.a
 
 re: fclean all
 

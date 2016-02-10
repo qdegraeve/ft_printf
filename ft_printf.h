@@ -6,7 +6,7 @@
 /*   By: qdegraev <marvin@42.fr>                    +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2016/02/08 10:56:16 by qdegraev          #+#    #+#             */
-/*   Updated: 2016/02/09 15:44:22 by qdegraev         ###   ########.fr       */
+/*   Updated: 2016/02/10 12:19:25 by qdegraev         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -31,17 +31,22 @@ typedef struct		s_arg
 	int			p_precison;
 }					t_arg;
 
+/*		type conversion		*/
+
 void				type_d(char type, t_arg *a);
+void				type_s(char type, t_arg *a);
 void				convert_arg_s(char *s);
 void				convert_arg_c(char c);
 void				convert_arg_d(int);
-void				ft_printf(char *format, ...);
+
+/*		flags				*/
+
 void				check_flags(char *format, t_arg *a);
 void				check_min_lenght(char *format, t_arg *a);
 void				check_precision(char *format, t_arg *a);
 void				check_modifier(char *format, t_arg *a);
-void				check_type(char *format, t_arg *a);
 
-void				type_s(char type, t_arg *a);
+void				ft_printf(char *format, ...);
+void				check_type(char *format, t_arg *a);
 
 #endif
