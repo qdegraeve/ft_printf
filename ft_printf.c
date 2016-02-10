@@ -6,7 +6,7 @@
 /*   By: qdegraev <marvin@42.fr>                    +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2016/02/05 12:36:34 by qdegraev          #+#    #+#             */
-/*   Updated: 2016/02/10 14:29:06 by qdegraev         ###   ########.fr       */
+/*   Updated: 2016/02/10 16:22:32 by qdegraev         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -23,6 +23,17 @@ void	type_s(char type, t_arg *a)
 		ft_putstr(va_arg(a->ap, char *));
 	if (type == 'S')
 		ft_putstr(va_arg(a->ap, char *));
+}
+
+void	type_percent(t_arg *a)
+{
+	int i;
+
+	i = 1;
+	ft_putchar('%');
+	while (++i < a->l_lenght)
+		ft_putchar(' ');
+
 }
 
 void	convert_arg_s(char *s)

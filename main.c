@@ -6,7 +6,7 @@
 /*   By: qdegraev <marvin@42.fr>                    +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2016/02/10 14:28:02 by qdegraev          #+#    #+#             */
-/*   Updated: 2016/02/10 14:31:13 by qdegraev         ###   ########.fr       */
+/*   Updated: 2016/02/10 17:42:18 by qdegraev         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -15,7 +15,9 @@
 
 int	main(void)
 {
-	ft_printf("ft_printf %-+-+2d boudin\n", -42);
-	printf("ab_printf %-+-+2d boudin\n", -42);
+	char *g = "gros";
+	ft_printf("ft_printf %--2s boudin\n", "gros");
+	ft_printf("ft_printf %--2s boudin\n", g);
+	printf("ab_printf %--2s boudin\n", "gros");
 	return (0);
 }
