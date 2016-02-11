@@ -1,29 +1,39 @@
 /* ************************************************************************** */
 /*                                                                            */
 /*                                                        :::      ::::::::   */
-/*   types.c                                            :+:      :+:    :+:   */
+/*   ft_atoi_base.c                                     :+:      :+:    :+:   */
 /*                                                    +:+ +:+         +:+     */
 /*   By: qdegraev <marvin@42.fr>                    +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
-/*   Created: 2016/02/10 12:14:44 by qdegraev          #+#    #+#             */
-/*   Updated: 2016/02/11 21:21:16 by qdegraev         ###   ########.fr       */
+/*   Created: 2016/02/11 20:39:51 by qdegraev          #+#    #+#             */
+/*   Updated: 2016/02/11 23:42:05 by qdegraev         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
-#include "ft_printf.h"
+#include "libft.h"
 
-void	check_type(char *format, t_arg *a)
+int	ft_atoi_base(const char *str, int base)
 {
-	if (format[a->i] == 's' || format[a->i] == 'S')
-		type_s(format[a->i], a);
-	if (format[a->i] == 'd' || format[a->i] == 'i')
-		type_d(format[a->i], a);
-	if (format[a->i] == '%')
-		type_percent(a);
-	if (format[a->i] == 'x' || format[a->i] == 'X')
-		type_x(a);
-	if (format[a->i] == 'o')
-		type_o(a);
-	if (format[a->i] == 'u')
-		type_u(a);
+	int	sign;
+	size_t	res;
+	int	i;
+
+	i = 0;
+	res = 0;
+	sign = 1;
+	while ((unsigned char)str[i] < 33)
+		i++;
+	if (str[i] == '-' && ft_isdigit(str[i + 1]) == 1)
+	{
+		sign = -sign;
+		i++;
+	}
+	if (str[i] == '+' && ft_isdigit(str[i + 1]) == 1)
+		i++;
+	while (ft_isdigit(str[i]) == 1)
+	{
+		res = (res * 10) + str[i] - '0';
+		i++;
+	}
+	return (res * sign);
 }

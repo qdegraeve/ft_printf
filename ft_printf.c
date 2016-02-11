@@ -6,7 +6,7 @@
 /*   By: qdegraev <marvin@42.fr>                    +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2016/02/05 12:36:34 by qdegraev          #+#    #+#             */
-/*   Updated: 2016/02/11 17:26:25 by qdegraev         ###   ########.fr       */
+/*   Updated: 2016/02/11 21:34:08 by qdegraev         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -41,18 +41,41 @@ void	type_percent(t_arg *a)
 
 }
 
-void	convert_arg_s(char *s)
+void	type_x(t_arg *a)
 {
+	char *s;
+
+	s = ft_itoa_base(va_arg(a->ap, unsigned int), 16);
+	a->ret = ft_strlen(s);
 	ft_putstr(s);
 }
 
-void	convert_arg_c(char c)
+void	type_u(t_arg *a)
 {
-	ft_putchar(c);
+	int u;
+	int tmp;
+
+	u = 0;
+	u = va_arg(a->ap, int);
+	tmp = u;
+	while ((tmp = tmp / 10))
+		a->ret++;
+	ft_putnbru(u);
+	while (++(a->ret) < a->l_lenght)
+		ft_putchar(' ');
+}
+
+void	type_o(t_arg *a)
+{
+	char *s;
+
+	s = ft_itoa_base(va_arg(a->ap, unsigned int), 8);
+	a->ret = ft_strlen(s);
+	ft_putstr(s);
 }
 
 void	type_d(char type, t_arg *a)
-{	
+{
 	int d;
 	int tmp;
 

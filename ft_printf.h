@@ -6,7 +6,7 @@
 /*   By: qdegraev <marvin@42.fr>                    +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2016/02/08 10:56:16 by qdegraev          #+#    #+#             */
-/*   Updated: 2016/02/11 16:05:43 by qdegraev         ###   ########.fr       */
+/*   Updated: 2016/02/11 21:35:42 by qdegraev         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -32,14 +32,18 @@ typedef struct		s_arg
 	int			p_precison;
 }					t_arg;
 
+/*		tools				*/
+
+void				ft_putnbru(unsigned int nb);
+
 /*		type conversion		*/
 
 void				type_d(char type, t_arg *a);
 void				type_s(char type, t_arg *a);
 void				type_percent(t_arg *a);
-void				convert_arg_s(char *s);
-void				convert_arg_c(char c);
-void				convert_arg_d(int);
+void				type_x(t_arg *a);
+void				type_u(t_arg *a);
+void				type_o(t_arg *a);
 
 /*		flags				*/
 
