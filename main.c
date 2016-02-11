@@ -6,7 +6,7 @@
 /*   By: qdegraev <marvin@42.fr>                    +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2016/02/10 14:28:02 by qdegraev          #+#    #+#             */
-/*   Updated: 2016/02/10 17:42:18 by qdegraev         ###   ########.fr       */
+/*   Updated: 2016/02/11 17:26:41 by qdegraev         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -15,9 +15,11 @@
 
 int	main(void)
 {
-	char *g = "gros";
-	ft_printf("ft_printf %--2s boudin\n", "gros");
-	ft_printf("ft_printf %--2s boudin\n", g);
-	printf("ab_printf %--2s boudin\n", "gros");
+	int i = 0;
+	int j = 0;
+
+	i = printf("ab_printf caca %s %d %%\n", "boudin", 424242);
+	j = ft_printf("ft_printf caca %s %d %%\n", "boudin", 424242);
+	printf("printf == {%d} ft_printf == {%d}\n", i, j);
 	return (0);
 }

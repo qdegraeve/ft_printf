@@ -6,7 +6,7 @@
 /*   By: qdegraev <marvin@42.fr>                    +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2016/02/05 12:36:34 by qdegraev          #+#    #+#             */
-/*   Updated: 2016/02/10 16:22:32 by qdegraev         ###   ########.fr       */
+/*   Updated: 2016/02/11 17:26:25 by qdegraev         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -19,20 +19,25 @@ void	check_modifier(char *format, t_arg *a)
 
 void	type_s(char type, t_arg *a)
 {
+	char *s;
+
+	s = va_arg(a->ap, char *);
+	a->ret = ft_strlen(s);
 	if (type == 's')
-		ft_putstr(va_arg(a->ap, char *));
+		ft_putstr(s);
 	if (type == 'S')
-		ft_putstr(va_arg(a->ap, char *));
+		ft_putstr(s);
 }
 
 void	type_percent(t_arg *a)
 {
-	int i;
-
-	i = 1;
 	ft_putchar('%');
-	while (++i < a->l_lenght)
+	a->ret += 1;
+	while (++(a->ret) < a->l_lenght)
+	{
 		ft_putchar(' ');
+		a->ret++;
+	}
 
 }
 
@@ -48,25 +53,23 @@ void	convert_arg_c(char c)
 
 void	type_d(char type, t_arg *a)
 {	
-	int i;
 	int d;
 	int tmp;
 
-	i = 1;
 	d = 0;
 	if (type == 'd' || type == 'i')
 		d = va_arg(a->ap, int);
 	tmp = d;
 	while ((tmp = tmp / 10))
-		i++;
+		a->ret++;
 	ft_putnbr(d);
-	while (++i < a->l_lenght)
+	while (++(a->ret) < a->l_lenght)
 		ft_putchar(' ');
 }
 
 void	init_struct(t_arg *a)
 {
-	a->i = 0;
+	a->ret = 0;
 	a->f_plus = 0;
 	a->f_minest = 0;
 	a->f_space = 0;
@@ -77,22 +80,30 @@ void	init_struct(t_arg *a)
 	a->p_precison = 0;
 }
 
-void	ft_printf(char *format, ...)
+int		ft_printf(char *format, ...)
 {
 	t_arg		a;
+	int			ret;
 
-	init_struct(&a);
+	ret = 0;
+	a.i = 0;
 	va_start(a.ap, format);
 	while (format[a.i])
 	{
+		init_struct(&a);
 		if (format[a.i] == '%')
 		{
 			a.i++;
 			check_flags(format, &a);
 		}
 		else
+		{
 			ft_putchar(format[a.i]);
+			ret++;
+		}
+		ret += a.ret;
 		a.i++;
 	}
 	va_end(a.ap);
+	return (ret);
 }

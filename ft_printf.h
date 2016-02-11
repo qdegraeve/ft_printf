@@ -6,7 +6,7 @@
 /*   By: qdegraev <marvin@42.fr>                    +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2016/02/08 10:56:16 by qdegraev          #+#    #+#             */
-/*   Updated: 2016/02/10 15:07:50 by qdegraev         ###   ########.fr       */
+/*   Updated: 2016/02/11 16:05:43 by qdegraev         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -20,6 +20,7 @@
 typedef struct		s_arg
 {
 	va_list		ap;
+	int			ret;
 	int			i;
 	int			f_plus;
 	int			f_minest;
@@ -47,7 +48,7 @@ void				check_min_lenght(char *format, t_arg *a);
 void				check_precision(char *format, t_arg *a);
 void				check_modifier(char *format, t_arg *a);
 
-void				ft_printf(char *format, ...);
+int					ft_printf(char *format, ...);
 void				check_type(char *format, t_arg *a);
 
 #endif

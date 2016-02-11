@@ -6,7 +6,7 @@
 /*   By: qdegraev <marvin@42.fr>                    +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2016/02/10 12:13:01 by qdegraev          #+#    #+#             */
-/*   Updated: 2016/02/10 12:14:22 by qdegraev         ###   ########.fr       */
+/*   Updated: 2016/02/11 17:29:03 by qdegraev         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -14,7 +14,7 @@
 
 void	check_min_lenght(char *format, t_arg *a)
 {
-	if (format[a->i] == 0)
+	if (format[a->i] == '0')
 	{
 		a->l_zero = 1;
 		a->i++;
