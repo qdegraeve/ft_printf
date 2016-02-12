@@ -1,20 +1,26 @@
 /* ************************************************************************** */
 /*                                                                            */
 /*                                                        :::      ::::::::   */
-/*   ft_toupper.c                                       :+:      :+:    :+:   */
+/*   type_percent.c                                     :+:      :+:    :+:   */
 /*                                                    +:+ +:+         +:+     */
-/*   By: afillion <marvin@42.fr>                    +#+  +:+       +#+        */
+/*   By: qdegraev <marvin@42.fr>                    +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
-/*   Created: 2015/11/29 19:01:59 by afillion          #+#    #+#             */
-/*   Updated: 2016/02/12 12:03:56 by qdegraev         ###   ########.fr       */
+/*   Created: 2016/02/12 15:19:44 by qdegraev          #+#    #+#             */
+/*   Updated: 2016/02/12 15:22:32 by qdegraev         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
-#include "libft.h"
+#include "ft_printf.h"
 
-int		ft_toupper(int c)
+void	type_percent(t_arg *a)
 {
-	if (c >= 'a' && c <= 'z')
-		return (c - 'a' + 'A');
-	return (c);
+	a->ret = 1;
+	a->f_minest == 1 ? ft_putchar('%') : 0;
+	while (a->ret < a->l_lenght)
+	{
+		ft_putchar(' ');
+		a->ret++;
+	}
+	a->f_minest == 0 ? ft_putchar('%') : 0;
 }
+

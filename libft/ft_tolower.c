@@ -6,13 +6,13 @@
 /*   By: afillion <marvin@42.fr>                    +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2015/11/29 19:00:19 by afillion          #+#    #+#             */
-/*   Updated: 2015/11/29 19:01:27 by afillion         ###   ########.fr       */
+/*   Updated: 2016/02/12 12:03:37 by qdegraev         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
 #include "libft.h"
 
-int	ft_tolower(int c)
+int		ft_tolower(int c)
 {
 	if (c >= 'A' && c <= 'Z')
 		return (c - 'A' + 'a');

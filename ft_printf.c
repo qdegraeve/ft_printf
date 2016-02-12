@@ -6,15 +6,32 @@
 /*   By: qdegraev <marvin@42.fr>                    +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2016/02/05 12:36:34 by qdegraev          #+#    #+#             */
-/*   Updated: 2016/02/11 21:34:08 by qdegraev         ###   ########.fr       */
+/*   Updated: 2016/02/12 16:29:37 by qdegraev         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
 #include "ft_printf.h"
+#include <stdio.h>
 
-void	check_modifier(char *format, t_arg *a)
+void	check_modifier(char *f, t_arg *a)
 {
-	check_type(format, a);
+	if (f[a->i] == 'h' || f[a->i] == 'l' || f[a->i] == 'j' || f[a->i] == 'z')
+	{
+		if (f[a->i] == 'h' && f[a->i + 1] == 'h')
+			a->hh_modifier = 1;
+		else if (f[a->i] == 'h')
+			a->h_modifier = 1;
+		else if (f[a->i] == 'l' && f[a->i + 1] == 'l')
+			a->ll_modifier = 1;
+		else if (f[a->i] == 'l')
+			a->l_modifier = 1;
+		else if (f[a->i] == 'j')
+			a->j_modifier = 1;
+		else if (f[a->i] == 'z')
+			a->z_modifier = 1;
+		a->i = a->ll_modifier || a->hh_modifier ? a->i + 2 : a->i + 1;
+	}
+	check_type(f, a);
 }
 
 void	type_s(char type, t_arg *a)
@@ -29,65 +46,21 @@ void	type_s(char type, t_arg *a)
 		ft_putstr(s);
 }
 
-void	type_percent(t_arg *a)
-{
-	ft_putchar('%');
-	a->ret += 1;
-	while (++(a->ret) < a->l_lenght)
-	{
-		ft_putchar(' ');
-		a->ret++;
-	}
-
-}
-
-void	type_x(t_arg *a)
-{
-	char *s;
-
-	s = ft_itoa_base(va_arg(a->ap, unsigned int), 16);
-	a->ret = ft_strlen(s);
-	ft_putstr(s);
-}
-
-void	type_u(t_arg *a)
-{
-	int u;
-	int tmp;
-
-	u = 0;
-	u = va_arg(a->ap, int);
-	tmp = u;
-	while ((tmp = tmp / 10))
-		a->ret++;
-	ft_putnbru(u);
-	while (++(a->ret) < a->l_lenght)
-		ft_putchar(' ');
-}
-
 void	type_o(t_arg *a)
 {
 	char *s;
 
-	s = ft_itoa_base(va_arg(a->ap, unsigned int), 8);
+	s = ft_utoa_base(va_arg(a->ap, unsigned int), 8);
 	a->ret = ft_strlen(s);
-	ft_putstr(s);
-}
-
-void	type_d(char type, t_arg *a)
-{
-	int d;
-	int tmp;
-
-	d = 0;
-	if (type == 'd' || type == 'i')
-		d = va_arg(a->ap, int);
-	tmp = d;
-	while ((tmp = tmp / 10))
+	a->f_minest == 1 && a->f_plus == 1 ? ft_putchar('+') : 0;
+	a->f_minest == 1 ? ft_putstr(s) : 0;
+	while (a->ret < a->l_lenght)
+	{
+		a->f_minest == 0 && a->l_zero == 1 ? ft_putchar('0') : ft_putchar(' ');
 		a->ret++;
-	ft_putnbr(d);
-	while (++(a->ret) < a->l_lenght)
-		ft_putchar(' ');
+	}
+	a->f_minest == 0 && a->f_plus == 1 ? ft_putchar('+') : 0;
+	a->f_minest == 0 ? ft_putstr(s) : 0;
 }
 
 void	init_struct(t_arg *a)
@@ -100,7 +73,7 @@ void	init_struct(t_arg *a)
 	a->f_none = 0;
 	a->l_zero = 0;
 	a->l_lenght = 0;
-	a->p_precison = 0;
+	a->p_precision = 0;
 }
 
 int		ft_printf(char *format, ...)
