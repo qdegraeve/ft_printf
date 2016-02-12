@@ -6,7 +6,7 @@
 /*   By: afillion <marvin@42.fr>                    +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2015/11/29 14:04:50 by afillion          #+#    #+#             */
-/*   Updated: 2016/02/12 12:03:32 by qdegraev         ###   ########.fr       */
+/*   Updated: 2016/02/12 19:50:33 by qdegraev         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -58,6 +58,7 @@ char				*ft_strmapi(char const *s, char (*f)(unsigned int, char));
 int					ft_strnequ(const char *s1, const char *s2, size_t n);
 char				*ft_strsub(char const *s, unsigned int start, size_t len);
 char				*ft_strjoin(char const *s1, char const *s2);
+char				*ft_cleanjoin(char *s1, char *s2);
 char				*ft_strtrim(char const *s);
 char				**ft_strsplit(char const *s, char c);
 

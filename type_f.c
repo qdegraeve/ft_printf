@@ -1,33 +1,21 @@
 /* ************************************************************************** */
 /*                                                                            */
 /*                                                        :::      ::::::::   */
-/*   ft_putbase.c                                       :+:      :+:    :+:   */
+/*   type_f.c                                           :+:      :+:    :+:   */
 /*                                                    +:+ +:+         +:+     */
 /*   By: qdegraev <marvin@42.fr>                    +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
-/*   Created: 2016/02/12 19:29:31 by qdegraev          #+#    #+#             */
-/*   Updated: 2016/02/12 19:29:34 by qdegraev         ###   ########.fr       */
+/*   Created: 2016/02/12 20:27:45 by qdegraev          #+#    #+#             */
+/*   Updated: 2016/02/12 20:43:18 by qdegraev         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
-#include "libft.h"
+#include "ft_printf.h"
 
-void	ft_putbase(unsigned int n, unsigned int base)
+void	type_f(t_arg *a)
 {
-	unsigned int	tmp;
+	char *f;
 
-	if (n >= base)
-		ft_putbase(n / base, base);
-	else
-	{
-		if (base == 8)
-			ft_putchar('0');
-		else if (base == 16)
-			ft_putstr("0x");
-	}
-	tmp = n % base;
-	if (tmp <= 9)
-		ft_putchar(tmp + '0');
-	else if (tmp > 9 && tmp <= 9 + 26)
-		ft_putchar(tmp + 'A' - 10);
+	f = ft_dtoa_base(va_arg(a->ap, double), 10);
+	ft_putstr(f);
 }

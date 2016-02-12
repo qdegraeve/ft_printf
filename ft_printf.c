@@ -6,7 +6,7 @@
 /*   By: qdegraev <marvin@42.fr>                    +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2016/02/05 12:36:34 by qdegraev          #+#    #+#             */
-/*   Updated: 2016/02/12 16:29:37 by qdegraev         ###   ########.fr       */
+/*   Updated: 2016/02/12 19:01:43 by qdegraev         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -18,18 +18,18 @@ void	check_modifier(char *f, t_arg *a)
 	if (f[a->i] == 'h' || f[a->i] == 'l' || f[a->i] == 'j' || f[a->i] == 'z')
 	{
 		if (f[a->i] == 'h' && f[a->i + 1] == 'h')
-			a->hh_modifier = 1;
+			a->m_hh = 1;
 		else if (f[a->i] == 'h')
-			a->h_modifier = 1;
+			a->m_h = 1;
 		else if (f[a->i] == 'l' && f[a->i + 1] == 'l')
-			a->ll_modifier = 1;
+			a->m_ll = 1;
 		else if (f[a->i] == 'l')
-			a->l_modifier = 1;
+			a->m_l = 1;
 		else if (f[a->i] == 'j')
-			a->j_modifier = 1;
+			a->m_j = 1;
 		else if (f[a->i] == 'z')
-			a->z_modifier = 1;
-		a->i = a->ll_modifier || a->hh_modifier ? a->i + 2 : a->i + 1;
+			a->m_z = 1;
+		a->i = a->m_ll || a->m_hh ? a->i + 2 : a->i + 1;
 	}
 	check_type(f, a);
 }
@@ -74,6 +74,12 @@ void	init_struct(t_arg *a)
 	a->l_zero = 0;
 	a->l_lenght = 0;
 	a->p_precision = 0;
+	a->m_hh = 0;
+	a->m_h = 0;
+	a->m_l = 0;
+	a->m_ll = 0;
+	a->m_j = 0;
+	a->m_z = 0;
 }
 
 int		ft_printf(char *format, ...)

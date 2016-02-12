@@ -6,7 +6,7 @@
 /*   By: qdegraev <marvin@42.fr>                    +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2016/02/12 11:41:21 by qdegraev          #+#    #+#             */
-/*   Updated: 2016/02/12 14:16:08 by qdegraev         ###   ########.fr       */
+/*   Updated: 2016/02/12 19:04:16 by qdegraev         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -29,7 +29,7 @@ void	type_x(char type, t_arg *a)
 {
 	char	*s;
 
-	s = ft_utoa_base(va_arg(a->ap, unsigned int), 16);
+	s = a->m_l || a->m_ll ? ft_ltoa_base(va_arg(a->ap, unsigned long), 16) : ft_utoa_base(va_arg(a->ap, unsigned int), 16);
 	a->ret = ft_strlen(s);
 	if (type == 'x')
 		s = str_lower(s);

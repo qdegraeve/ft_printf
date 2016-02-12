@@ -6,7 +6,7 @@
 #    By: afillion <marvin@42.fr>                    +#+  +:+       +#+         #
 #                                                 +#+#+#+#+#+   +#+            #
 #    Created: 2015/11/30 15:37:28 by afillion          #+#    #+#              #
-#    Updated: 2016/02/11 20:34:45 by qdegraev         ###   ########.fr        #
+#    Updated: 2016/02/12 19:51:33 by qdegraev         ###   ########.fr        #
 #                                                                              #
 # **************************************************************************** #
 
@@ -81,6 +81,7 @@ SRC =  ft_strlcat.c \
 	ft_getnbr.c \
 	ft_abs.c \
 	ft_itoa_base.c \
+	ft_cleanjoin.c \
 
 OBJ = $(SRC:.c=.o)
 

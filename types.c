@@ -6,7 +6,7 @@
 /*   By: qdegraev <marvin@42.fr>                    +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2016/02/10 12:14:44 by qdegraev          #+#    #+#             */
-/*   Updated: 2016/02/12 16:25:56 by qdegraev         ###   ########.fr       */
+/*   Updated: 2016/02/12 20:26:30 by qdegraev         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -26,4 +26,6 @@ void	check_type(char *format, t_arg *a)
 		type_o(a);
 	else if (format[a->i] == 'u')
 		type_u(a);
+	else if (format[a->i] == 'f')
+		type_f(a);
 }

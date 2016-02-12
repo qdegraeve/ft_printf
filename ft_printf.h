@@ -6,7 +6,7 @@
 /*   By: qdegraev <marvin@42.fr>                    +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2016/02/08 10:56:16 by qdegraev          #+#    #+#             */
-/*   Updated: 2016/02/12 16:17:55 by qdegraev         ###   ########.fr       */
+/*   Updated: 2016/02/12 20:26:27 by qdegraev         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -30,18 +30,20 @@ typedef struct		s_arg
 	int			l_zero;
 	int			l_lenght;
 	int			p_precision;
-	int			h_modifier;
-	int			hh_modifier;
-	int			l_modifier;
-	int			ll_modifier;
-	int			z_modifier;
-	int			j_modifier;
+	int			m_h;
+	int			m_hh;
+	int			m_l;
+	int			m_ll;
+	int			m_z;
+	int			m_j;
 }					t_arg;
 
 /*		tools				*/
 
 void				ft_putnbru(unsigned int nb);
 char				*ft_utoa_base(unsigned int value, int base);
+char				*ft_ltoa_base(unsigned long value, int base);
+char				*ft_dtoa_base(double value, int base);
 
 /*		type conversion		*/
 
@@ -51,6 +53,7 @@ void				type_x(char type, t_arg *a);
 void				type_percent(t_arg *a);
 void				type_u(t_arg *a);
 void				type_o(t_arg *a);
+void				type_f(t_arg *a);
 
 /*		flags				*/
 
