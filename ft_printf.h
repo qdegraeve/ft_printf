@@ -43,7 +43,7 @@ typedef struct		s_arg
 void				ft_putnbru(unsigned int nb);
 char				*ft_utoa_base(unsigned int value, int base);
 char				*ft_ltoa_base(unsigned long value, int base);
-char				*ft_dtoa_base(double value, int base);
+char				*ft_dtoa_base(double value, int base, int precision);
 
 /*		type conversion		*/
 

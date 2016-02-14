@@ -62,9 +62,8 @@ char	*ft_ltoa_base(unsigned long value, int base)
 	return (ret);
 }
 
-char	*ft_dtoa_base(double value, int base)
+char	*ft_dtoa_base(double value, int base, int precision)
 {
-	int		len;
 	char	*ret;
 	char	*dot;
 	double	tmp;
@@ -74,12 +73,12 @@ char	*ft_dtoa_base(double value, int base)
 	if (!(ret = ft_strnew(0)))
 		return (NULL);
 	ret = ft_cleanjoin(ret, ft_itoa_base((int)value, base));
-	len = ft_strlen(ret);
 	tmp = value - (int)value;
-	while ((value = value - (int)value))
+	while ((value = value - (int)value) && precision > 0)
 	{
 		tmp = tmp * 10;
 		value = tmp;
+		precision--;
 	}
 	dot = ft_strdup(".");
 	ret = ft_cleanjoin(ret, dot);
