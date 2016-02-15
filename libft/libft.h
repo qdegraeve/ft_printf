@@ -6,7 +6,7 @@
 /*   By: afillion <marvin@42.fr>                    +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2015/11/29 14:04:50 by afillion          #+#    #+#             */
-/*   Updated: 2016/02/12 19:50:33 by qdegraev         ###   ########.fr       */
+/*   Updated: 2016/02/15 17:50:53 by qdegraev         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -75,6 +75,7 @@ int					ft_isprint(int c);
 int					ft_toupper(int c);
 int					ft_tolower(int c);
 int					ft_iswhitespace(char c);
+int					ft_abs(int i);
 
 void				ft_putchar(char c);
 void				ft_putstr(char const *s);

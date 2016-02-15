@@ -6,7 +6,7 @@
 /*   By: qdegraev <marvin@42.fr>                    +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2016/02/10 12:14:44 by qdegraev          #+#    #+#             */
-/*   Updated: 2016/02/12 20:26:30 by qdegraev         ###   ########.fr       */
+/*   Updated: 2016/02/15 21:36:29 by qdegraev         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -14,6 +14,7 @@
 
 void	check_type(char *format, t_arg *a)
 {
+	set_default_precision(format[a->i], a);
 	if (format[a->i] == 's' || format[a->i] == 'S')
 		type_s(format[a->i], a);
 	else if (format[a->i] == 'd' || format[a->i] == 'i')
@@ -28,4 +29,8 @@ void	check_type(char *format, t_arg *a)
 		type_u(a);
 	else if (format[a->i] == 'f')
 		type_f(a);
+	else if (format[a->i] == 'c')
+		type_c(a);
+	else
+		ft_putchar(format[a->i]);
 }

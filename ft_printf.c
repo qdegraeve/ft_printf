@@ -6,12 +6,11 @@
 /*   By: qdegraev <marvin@42.fr>                    +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2016/02/05 12:36:34 by qdegraev          #+#    #+#             */
-/*   Updated: 2016/02/12 19:01:43 by qdegraev         ###   ########.fr       */
+/*   Updated: 2016/02/15 21:42:08 by qdegraev         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
 #include "ft_printf.h"
-#include <stdio.h>
 
 void	check_modifier(char *f, t_arg *a)
 {
@@ -34,32 +33,34 @@ void	check_modifier(char *f, t_arg *a)
 	check_type(f, a);
 }
 
-void	type_s(char type, t_arg *a)
-{
-	char *s;
-
-	s = va_arg(a->ap, char *);
-	a->ret = ft_strlen(s);
-	if (type == 's')
-		ft_putstr(s);
-	if (type == 'S')
-		ft_putstr(s);
-}
-
 void	type_o(t_arg *a)
 {
-	char *s;
+	char	*s;
+	unsigned long x;
 
-	s = ft_utoa_base(va_arg(a->ap, unsigned int), 8);
-	a->ret = ft_strlen(s);
-	a->f_minest == 1 && a->f_plus == 1 ? ft_putchar('+') : 0;
-	a->f_minest == 1 ? ft_putstr(s) : 0;
+	x = va_arg(a->ap, unsigned long);
+	if (!(x))
+	{
+		a->p_precision < a->l_lenght? ft_repeat_char(' ', a->l_lenght - a->p_precision) : 0;
+		a->p_precision ? ft_repeat_char('0', a->p_precision) : 0;
+		a->ret = a->p_precision > a->l_lenght ? a->p_precision : a->l_lenght;
+		return ;
+	}
+	s = a->m_l || a->m_ll ? ft_ltoa_base(x, 8) : ft_utoa_base((unsigned int)x, 8);
+	if ((a->ret = ft_strlen(s)) < a->p_precision)
+		while (a->ret < a->p_precision)
+		{
+			s = ft_cleanjoin(ft_strdup("0"), s);
+			a->ret++;
+		}
+	else if (a->f_hash && a->ret++)
+		s = ft_cleanjoin(ft_strdup("0"), s);
+	a->f_minest ? ft_putstr(s) : 0;
 	while (a->ret < a->l_lenght)
 	{
 		a->f_minest == 0 && a->l_zero == 1 ? ft_putchar('0') : ft_putchar(' ');
 		a->ret++;
 	}
-	a->f_minest == 0 && a->f_plus == 1 ? ft_putchar('+') : 0;
 	a->f_minest == 0 ? ft_putstr(s) : 0;
 }
 
@@ -73,13 +74,13 @@ void	init_struct(t_arg *a)
 	a->f_none = 0;
 	a->l_zero = 0;
 	a->l_lenght = 0;
-	a->p_precision = 0;
 	a->m_hh = 0;
 	a->m_h = 0;
 	a->m_l = 0;
 	a->m_ll = 0;
 	a->m_j = 0;
 	a->m_z = 0;
+	a->p_precision = -1;
 }
 
 int		ft_printf(char *format, ...)
@@ -95,6 +96,8 @@ int		ft_printf(char *format, ...)
 		init_struct(&a);
 		if (format[a.i] == '%')
 		{
+			if (format[a.i + 1] == '\0')
+				break ;
 			a.i++;
 			check_flags(format, &a);
 		}

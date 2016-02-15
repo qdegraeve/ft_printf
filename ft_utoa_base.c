@@ -6,11 +6,12 @@
 /*   By: qdegraev <marvin@42.fr>                    +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2016/02/12 11:43:33 by qdegraev          #+#    #+#             */
-/*   Updated: 2016/02/12 20:38:11 by qdegraev         ###   ########.fr       */
+/*   Updated: 2016/02/15 12:35:16 by qdegraev         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
 #include "ft_printf.h"
+#include <stdio.h>
 
 char	*ft_utoa_base(unsigned int value, int base)
 {
@@ -62,26 +63,32 @@ char	*ft_ltoa_base(unsigned long value, int base)
 	return (ret);
 }
 
-char	*ft_dtoa_base(double value, int base, int precision)
+char	*ft_dtoa_base(double value, int base, int precision, t_arg *a)
 {
 	char	*ret;
-	char	*dot;
 	double	tmp;
 
 	if (base < 2 || base > 16)
 		return (NULL);
-	if (!(ret = ft_strnew(0)))
-		return (NULL);
-	ret = ft_cleanjoin(ret, ft_itoa_base((int)value, base));
-	tmp = value - (int)value;
-	while ((value = value - (int)value) && precision > 0)
+	if (precision > 0)
 	{
-		tmp = tmp * 10;
-		value = tmp;
-		precision--;
+		ret = ft_cleanjoin(NULL, ft_itoa_base((int)value, base));
+		tmp = value - (int)value;
+		while ((value = value - (int)value) && precision > 0)
+		{
+			tmp = tmp * 10;
+			value = tmp;
+			precision--;
+		}
+		ret = ft_cleanjoin(ret, ft_strdup("."));
+		ret = ft_cleanjoin(ret, ft_itoa_base(tmp, base));
 	}
-	dot = ft_strdup(".");
-	ret = ft_cleanjoin(ret, dot);
-	ret = ft_cleanjoin(ret, ft_itoa_base(tmp, base));
+	else
+	{
+		value = (10 * (value - (int)value)) > 5 ? value + 1 : value;
+		ret = a->f_hash ? ft_cleanjoin(ft_itoa_base((int)value, base),
+				ft_strdup(".")) : ft_cleanjoin(NULL, ft_itoa_base((int)value,
+					base));
+	}
 	return (ret);
 }
