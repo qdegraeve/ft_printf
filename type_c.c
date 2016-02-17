@@ -18,11 +18,11 @@ void	type_c(t_arg *a)
 
 	c = va_arg(a->ap, int);
 	a->ret++;
-	a->f_minest ? ft_putchar(c) : 0;
-	while (a->ret < a->l_lenght)
+	a->f_m ? ft_putchar(c) : 0;
+	while (a->ret < a->l)
 	{
 		ft_putchar(' ');
 		a->ret++;
 	}
-	!a->f_minest ? ft_putchar(c) : 0;
+	!a->f_m ? ft_putchar(c) : 0;
 }

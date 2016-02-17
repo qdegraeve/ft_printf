@@ -72,7 +72,7 @@ char	*ft_dtoa_base(double value, int base, int precision, t_arg *a)
 		return (NULL);
 	if (precision > 0)
 	{
-		ret = ft_cleanjoin(NULL, ft_itoa_base((int)value, base));
+		ret = ft_cjoin(NULL, ft_itoa_base((int)value, base));
 		tmp = value - (int)value;
 		while ((value = value - (int)value) && precision > 0)
 		{
@@ -80,14 +80,14 @@ char	*ft_dtoa_base(double value, int base, int precision, t_arg *a)
 			value = tmp;
 			precision--;
 		}
-		ret = ft_cleanjoin(ret, ft_strdup("."));
-		ret = ft_cleanjoin(ret, ft_itoa_base(tmp, base));
+		ret = ft_cjoin(ret, ft_strdup("."));
+		ret = ft_cjoin(ret, ft_itoa_base(tmp, base));
 	}
 	else
 	{
 		value = (10 * (value - (int)value)) > 5 ? value + 1 : value;
-		ret = a->f_hash ? ft_cleanjoin(ft_itoa_base((int)value, base),
-				ft_strdup(".")) : ft_cleanjoin(NULL, ft_itoa_base((int)value,
+		ret = a->f_hash ? ft_cjoin(ft_itoa_base((int)value, base),
+				ft_strdup(".")) : ft_cjoin(NULL, ft_itoa_base((int)value,
 					base));
 	}
 	return (ret);

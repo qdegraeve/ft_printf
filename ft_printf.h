@@ -6,7 +6,7 @@
 /*   By: qdegraev <marvin@42.fr>                    +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2016/02/08 10:56:16 by qdegraev          #+#    #+#             */
-/*   Updated: 2016/02/15 17:35:41 by qdegraev         ###   ########.fr       */
+/*   Updated: 2016/02/17 13:34:12 by qdegraev         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -25,14 +25,14 @@ typedef struct		s_arg
 	va_list		ap;
 	int			ret;
 	int			i;
-	int			f_plus;
-	int			f_minest;
-	int			f_space;
+	int			f_p;
+	int			f_m;
+	int			f_sp;
 	int			f_hash;
 	int			f_none;
-	int			l_zero;
-	int			l_lenght;
-	int			p_precision;
+	int			f_zero;
+	int			l;
+	int			p;
 	int			m_h;
 	int			m_hh;
 	int			m_l;

@@ -46,26 +46,26 @@ void	type_x(char type, t_arg *a)
 	x = va_arg(a->ap, unsigned long);
 	if (!(x))
 	{
-		a->p_precision < a->l_lenght? ft_repeat_char(' ', a->l_lenght - a->p_precision) : 0;
-		a->p_precision ? ft_repeat_char('0', a->p_precision) : 0;
-		a->ret = a->p_precision > a->l_lenght ? a->p_precision : a->l_lenght;
+		a->p < a->l? ft_repeat_char(' ', a->l - a->p) : 0;
+		a->p ? ft_repeat_char('0', a->p) : 0;
+		a->ret = a->p > a->l ? a->p : a->l;
 		return ;
 	}
 	s = a->m_l || a->m_ll ? ft_ltoa_base(x, 16) : ft_utoa_base((unsigned int)x, 16);
 	a->ret = a->f_hash ? ft_strlen(s) + 2 : ft_strlen(s);
 	if (type == 'x')
 		s = str_lower(s);
-	(a->f_minest || a->l_zero) && a->f_hash && type == 'x' ? ft_putstr("0x") : 0;
-	(a->f_minest || a->l_zero) && a->f_hash && type == 'X' ? ft_putstr("0X") : 0;
-	a->f_minest ? ft_putstr(s) : 0;
-	while (a->ret < a->l_lenght)
+	(a->f_m || a->f_zero) && a->f_hash && type == 'x' ? ft_putstr("0x") : 0;
+	(a->f_m || a->f_zero) && a->f_hash && type == 'X' ? ft_putstr("0X") : 0;
+	a->f_m ? ft_putstr(s) : 0;
+	while (a->ret < a->l)
 	{
-		a->f_minest == 0 && a->l_zero == 1 ? ft_putchar('0') : ft_putchar(' ');
+		a->f_m == 0 && a->f_zero == 1 ? ft_putchar('0') : ft_putchar(' ');
 		a->ret++;
 	}
-	!a->f_minest && !a->l_zero && a->f_hash && type == 'x' ? ft_putstr("0x") : 0;
-	!a->f_minest && !a->l_zero && a->f_hash && type == 'X' ? ft_putstr("0X") : 0;
-	a->f_minest == 0 ? ft_putstr(s) : 0;
+	!a->f_m && !a->f_zero && a->f_hash && type == 'x' ? ft_putstr("0x") : 0;
+	!a->f_m && !a->f_zero && a->f_hash && type == 'X' ? ft_putstr("0X") : 0;
+	a->f_m == 0 ? ft_putstr(s) : 0;
 }
 
 void	type_u(t_arg *a)
@@ -78,13 +78,13 @@ void	type_u(t_arg *a)
 	tmp = u;
 	while ((tmp = tmp / 10))
 		a->ret++;
-	a->f_minest == 1 && a->f_plus == 1 ? ft_putchar('+') : 0;
-	a->f_minest == 1 ? ft_putnbru(u) : 0;
-	while (a->ret < a->l_lenght)
+	a->f_m == 1 && a->f_p == 1 ? ft_putchar('+') : 0;
+	a->f_m == 1 ? ft_putnbru(u) : 0;
+	while (a->ret < a->l)
 	{
-		a->f_minest == 0 && a->l_zero == 1 ? ft_putchar('0') : ft_putchar(' ');
+		a->f_m == 0 && a->f_zero == 1 ? ft_putchar('0') : ft_putchar(' ');
 		a->ret++;
 	}
-	a->f_minest == 0 && a->f_plus == 1 ? ft_putchar('+') : 0;
-	a->f_minest == 0 ? ft_putnbru(u) : 0;
+	a->f_m == 0 && a->f_p == 1 ? ft_putchar('+') : 0;
+	a->f_m == 0 ? ft_putnbru(u) : 0;
 }

@@ -23,22 +23,22 @@ void	type_s(char type, t_arg *a)
 	s = va_arg(a->ap, char *);
 	if (!s[0])
 	{
-		ft_repeat_char(' ', a->l_lenght);
-		a->ret = a->l_lenght;
+		ft_repeat_char(' ', a->l);
+		a->ret = a->l;
 		return ;
 	}
 	a->ret = ft_strlen(s);
-	i = a->p_precision > 0 ? a->l_lenght - a->p_precision : a->l_lenght - a->ret;
-	!a->f_minest ? ft_repeat_char(' ', i) : 0;
-	if (a->p_precision)
+	i = a->p > 0 ? a->l - a->p : a->l - a->ret;
+	!a->f_m ? ft_repeat_char(' ', i) : 0;
+	if (a->p)
 	{
-		a->ret = a->p_precision;
-		while (a->p_precision--)
+		a->ret = a->p;
+		while (a->p--)
 			ft_putchar(s[j++]);
 	}
 	else
 		ft_putstr(s);
-	a->f_minest ? ft_repeat_char(' ', i) : 0;
+	a->f_m ? ft_repeat_char(' ', i) : 0;
 	if (i > 0)
 		a->ret += i;
 }

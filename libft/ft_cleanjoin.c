@@ -1,7 +1,7 @@
 /* ************************************************************************** */
 /*                                                                            */
 /*                                                        :::      ::::::::   */
-/*   ft_cleanjoin.c                                     :+:      :+:    :+:   */
+/*   ft_cjoin.c                                     :+:      :+:    :+:   */
 /*                                                    +:+ +:+         +:+     */
 /*   By: qdegraev <marvin@42.fr>                    +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
@@ -12,7 +12,7 @@
 
 #include "libft.h"
 
-char	*ft_cleanjoin(char *s1, char *s2)
+char	*ft_cjoin(char *s1, char *s2)
 {
 	char	*stock;
 

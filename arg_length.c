@@ -15,7 +15,7 @@
 void	check_min_lenght(char *format, t_arg *a)
 {
 	if (format[a->i] > '0' && format[a->i] <= '9')
-		a->l_lenght = ft_atoi(format + a->i);
+		a->l = ft_atoi(format + a->i);
 	while (format[a->i] >= '0' && format[a->i] <= '9')
 		a->i++;
 	if (format[a->i] == '.')
@@ -28,9 +28,9 @@ void	check_precision(char *format, t_arg *a)
 {
 	a->i++;
 	if (format[a->i] >= '0' && format[a->i] <= '9')
-		a->p_precision = ft_atoi(format + a->i);
+		a->p = ft_atoi(format + a->i);
 	else
-		a->p_precision = 0;
+		a->p = 0;
 	while (format[a->i] >= '0' && format[a->i] <= '9')
 		a->i++;
 	check_modifier(format, a);
@@ -38,11 +38,11 @@ void	check_precision(char *format, t_arg *a)
 
 void	set_default_precision(char type, t_arg *a)
 {
-	if (a->p_precision == -1 && type != 'd' && type != 'i')
+	if (a->p == -1 && type != 'd' && type != 'i')
 	{
-		a->p_precision = type == 'c' || type == 's' || type == 'S' ? 0 : 1;
+		a->p = type == 'c' || type == 's' || type == 'S' ? 0 : 1;
 		if (type == 'f' || type == 'e' || type == 'E' || type == 'g' ||
 				type == 'G')
-			a->p_precision = 6;
+			a->p = 6;
 	}
 }

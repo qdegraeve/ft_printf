@@ -15,12 +15,12 @@
 void	type_percent(t_arg *a)
 {
 	a->ret = 1;
-	a->f_minest == 1 ? ft_putchar('%') : 0;
-	while (a->ret < a->l_lenght)
+	a->f_m == 1 ? ft_putchar('%') : 0;
+	while (a->ret < a->l)
 	{
 		ft_putchar(' ');
 		a->ret++;
 	}
-	a->f_minest == 0 ? ft_putchar('%') : 0;
+	a->f_m == 0 ? ft_putchar('%') : 0;
 }
 
