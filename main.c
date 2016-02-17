@@ -6,7 +6,7 @@
 /*   By: qdegraev <marvin@42.fr>                    +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2016/02/10 14:28:02 by qdegraev          #+#    #+#             */
-/*   Updated: 2016/02/17 11:39:57 by qdegraev         ###   ########.fr       */
+/*   Updated: 2016/02/17 14:33:41 by qdegraev         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -30,5 +30,7 @@ int	main(void)
 	i = printf("ab_printf caca %.4s %#-10.5o %.9% %5c\n", "boudin", 2500, 'q');
 	j = ft_printf("ft_printf caca %.4s %#-10.5o %.9% %5c\n", "boudin", 2500, 'q');
 	printf("printf == {%d} ft_printf == {%d}\n", i, j);
+	printf("printf == {%d} - {%ld}\n", (short int)32768, 9223372036854775806);
+	ft_printf("ft_printf == {%d} - {%ld}\n", (short int)32768, 9223372036854775806);
 	return (0);
 }

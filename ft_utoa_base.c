@@ -6,7 +6,7 @@
 /*   By: qdegraev <marvin@42.fr>                    +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2016/02/12 11:43:33 by qdegraev          #+#    #+#             */
-/*   Updated: 2016/02/15 12:35:16 by qdegraev         ###   ########.fr       */
+/*   Updated: 2016/02/17 14:15:16 by qdegraev         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -38,11 +38,11 @@ char	*ft_utoa_base(unsigned int value, int base)
 	return (ret);
 }
 
-char	*ft_ltoa_base(unsigned long value, int base)
+char	*ft_ltoa_base(long long value, int base)
 {
 	int		len;
 	char	*ret;
-	unsigned long		tmp;
+	long long		tmp;
 
 	if (base < 2 || base > 16)
 		return (NULL);

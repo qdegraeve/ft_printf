@@ -6,7 +6,7 @@
 /*   By: qdegraev <marvin@42.fr>                    +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2016/02/10 12:14:44 by qdegraev          #+#    #+#             */
-/*   Updated: 2016/02/17 09:57:15 by qdegraev         ###   ########.fr       */
+/*   Updated: 2016/02/17 14:05:50 by qdegraev         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -18,7 +18,7 @@ void	check_type(char *format, t_arg *a)
 	if (format[a->i] == 's' || format[a->i] == 'S')
 		type_s(format[a->i], a);
 	else if (format[a->i] == 'd' || format[a->i] == 'i')
-		type_d(format[a->i], a);
+		type_d(a);
 	else if (format[a->i] == '%')
 		type_percent(a);
 	else if (format[a->i] == 'x' || format[a->i] == 'X')
