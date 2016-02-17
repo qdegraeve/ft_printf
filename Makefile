@@ -6,7 +6,7 @@
 #    By: qdegraev <marvin@42.fr>                    +#+  +:+       +#+         #
 #                                                 +#+#+#+#+#+   +#+            #
 #    Created: 2015/12/07 08:41:32 by qdegraev          #+#    #+#              #
-#    Updated: 2016/02/15 16:39:19 by qdegraev         ###   ########.fr        #
+#    Updated: 2016/02/17 10:20:39 by qdegraev         ###   ########.fr        #
 #                                                                              #
 # **************************************************************************** #
 
@@ -64,5 +64,5 @@ fclean: clean
 
 re: fclean all
 
-.PHONY: all re clean flcean
+.PHONY: all re clean flcean $(NAME)
 

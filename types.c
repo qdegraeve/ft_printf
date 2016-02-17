@@ -6,7 +6,7 @@
 /*   By: qdegraev <marvin@42.fr>                    +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2016/02/10 12:14:44 by qdegraev          #+#    #+#             */
-/*   Updated: 2016/02/15 21:36:29 by qdegraev         ###   ########.fr       */
+/*   Updated: 2016/02/17 09:57:15 by qdegraev         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -32,5 +32,8 @@ void	check_type(char *format, t_arg *a)
 	else if (format[a->i] == 'c')
 		type_c(a);
 	else
+	{
 		ft_putchar(format[a->i]);
+		a->ret++;
+	}
 }
