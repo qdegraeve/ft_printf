@@ -6,12 +6,11 @@
 /*   By: qdegraev <marvin@42.fr>                    +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2016/02/12 11:41:21 by qdegraev          #+#    #+#             */
-/*   Updated: 2016/02/15 20:41:47 by qdegraev         ###   ########.fr       */
+/*   Updated: 2016/02/17 17:13:59 by qdegraev         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
 #include "ft_printf.h"
-#include <unistd.h>
 
 char	*str_lower(char *str)
 {
@@ -66,25 +65,4 @@ void	type_x(char type, t_arg *a)
 	!a->f_m && !a->f_zero && a->f_hash && type == 'x' ? ft_putstr("0x") : 0;
 	!a->f_m && !a->f_zero && a->f_hash && type == 'X' ? ft_putstr("0X") : 0;
 	a->f_m == 0 ? ft_putstr(s) : 0;
-}
-
-void	type_u(t_arg *a)
-{
-	int u;
-	int tmp;
-
-	u = 0;
-	u = va_arg(a->ap, int);
-	tmp = u;
-	while ((tmp = tmp / 10))
-		a->ret++;
-	a->f_m == 1 && a->f_p == 1 ? ft_putchar('+') : 0;
-	a->f_m == 1 ? ft_putnbru(u) : 0;
-	while (a->ret < a->l)
-	{
-		a->f_m == 0 && a->f_zero == 1 ? ft_putchar('0') : ft_putchar(' ');
-		a->ret++;
-	}
-	a->f_m == 0 && a->f_p == 1 ? ft_putchar('+') : 0;
-	a->f_m == 0 ? ft_putnbru(u) : 0;
 }

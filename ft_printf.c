@@ -6,7 +6,7 @@
 /*   By: qdegraev <marvin@42.fr>                    +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2016/02/05 12:36:34 by qdegraev          #+#    #+#             */
-/*   Updated: 2016/02/17 14:35:43 by qdegraev         ###   ########.fr       */
+/*   Updated: 2016/02/17 18:56:18 by qdegraev         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -14,7 +14,7 @@
 
 void	check_modifier(char *f, t_arg *a)
 {
-	if (f[a->i] == 'h' || f[a->i] == 'l' || f[a->i] == 'j' || f[a->i] == 'z')
+	while (f[a->i] == 'h' || f[a->i] == 'l' || f[a->i] == 'j' || f[a->i] == 'z')
 	{
 		if (f[a->i] == 'h' && f[a->i + 1] == 'h')
 			a->m_hh = 1;
@@ -28,7 +28,10 @@ void	check_modifier(char *f, t_arg *a)
 			a->m_j = 1;
 		else if (f[a->i] == 'z')
 			a->m_z = 1;
-		a->i = a->m_ll || a->m_hh ? a->i + 2 : a->i + 1;
+		if (((a->m_ll || a->m_hh) && f[a->i + 2]) || f[a->i + 1])
+			a->i = a->m_ll || a->m_hh ? a->i + 2 : a->i + 1;
+		else
+			return ;
 	}
 	check_type(f, a);
 }

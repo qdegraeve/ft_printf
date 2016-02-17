@@ -6,7 +6,7 @@
 /*   By: qdegraev <marvin@42.fr>                    +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2016/02/08 10:56:16 by qdegraev          #+#    #+#             */
-/*   Updated: 2016/02/17 14:15:29 by qdegraev         ###   ########.fr       */
+/*   Updated: 2016/02/17 18:06:37 by qdegraev         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -44,18 +44,18 @@ typedef struct		s_arg
 /*		tools				*/
 
 void				ft_putnbru(unsigned int nb);
-char				*ft_utoa_base(unsigned int value, int base);
+char				*ft_utoa_base(unsigned long long value, int base);
 char				*ft_ltoa_base(long long value, int base);
 char				*ft_dtoa_base(double value, int base, int precision, t_arg *a);
 void				ft_repeat_char(char c, int nbr);
 
 /*		type conversion		*/
 
-void				type_d(t_arg *a);
+void				type_d(char type, t_arg *a);
 void				type_s(char type, t_arg *a);
 void				type_x(char type, t_arg *a);
 void				type_percent(t_arg *a);
-void				type_u(t_arg *a);
+void				type_u(char type, t_arg *a);
 void				type_o(t_arg *a);
 void				type_f(t_arg *a);
 void				type_c(t_arg *a);

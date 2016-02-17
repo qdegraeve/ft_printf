@@ -6,18 +6,18 @@
 /*   By: qdegraev <marvin@42.fr>                    +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2016/02/12 10:39:10 by qdegraev          #+#    #+#             */
-/*   Updated: 2016/02/17 14:35:21 by qdegraev         ###   ########.fr       */
+/*   Updated: 2016/02/17 18:15:00 by qdegraev         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
 #include "ft_printf.h"
 
-char	*type_d_std(int d, t_arg *a)
+char	*type_d_std(long long d, t_arg *a)
 {
 	char	*s;
 	int		i;
 
-	s = a->p == 0 && d == 0 ? ft_strnew(0) : ft_ltoa_base(ft_abs(d), 10);
+	s = a->p == 0 && d == 0 ? ft_strnew(0) : ft_ltoa_base(d, 10);
 	i = ft_strlen(s);
 	a->ret = d < 0 || a->f_p || a->f_sp ? i + 1 : i;
 	while (i++ < a->p)
@@ -36,12 +36,12 @@ char	*type_d_std(int d, t_arg *a)
 	return(s);
 }
 
-char	*type_d_zero(int d, t_arg *a)
+char	*type_d_zero(long long d, t_arg *a)
 {
 	char	*s;
 	int		i;
 
-	s = a->p == 0 && d == 0 ? ft_strnew(0) : ft_ltoa_base(ft_abs(d), 10);
+	s = a->p == 0 && d == 0 ? ft_strnew(0) : ft_ltoa_base(d, 10);
 	i = ft_strlen(s);
 	a->ret = d < 0 || a->f_p || a->f_sp ? i + 1 : i;
 	if (a->p != -1)
@@ -61,21 +61,26 @@ char	*type_d_zero(int d, t_arg *a)
 	return(s);
 }
 
-void	type_d(t_arg *a)
+void	type_d(char type, t_arg *a)
 {
 	long long	d;
 	char		*s;
 
 	d = va_arg(a->ap, long long);
-	if (a->m_h)
+	if (a->m_l || type == 'D')
+		d = (long)d;
+	else if (a->m_h)
 		d = (short int)d;
 	else if (a->m_hh)
 		d = (signed char)d;
-	else if (a->m_l)
-		d = (long)d;
+	else if (a->m_j)
+		d = (intmax_t)d;
+	else if (a->m_z)
+		d = (ssize_t)d;
 	else if (!a->m_ll)
 		d = (int)d;
 	s = a->f_zero && !a->f_m ? type_d_zero(d, a) : type_d_std(d, a);
 	a->ret = ft_strlen(s);
 	ft_putstr(s);
+	ft_strdel(&s);
 }

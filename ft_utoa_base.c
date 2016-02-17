@@ -6,18 +6,18 @@
 /*   By: qdegraev <marvin@42.fr>                    +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2016/02/12 11:43:33 by qdegraev          #+#    #+#             */
-/*   Updated: 2016/02/17 14:15:16 by qdegraev         ###   ########.fr       */
+/*   Updated: 2016/02/17 17:13:07 by qdegraev         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
 #include "ft_printf.h"
 #include <stdio.h>
 
-char	*ft_utoa_base(unsigned int value, int base)
+char	*ft_utoa_base(unsigned long long value, int base)
 {
-	int		len;
-	char	*ret;
-	unsigned int		tmp;
+	int					len;
+	char				*ret;
+	unsigned long long	tmp;
 
 	if (base < 2 || base > 16)
 		return (NULL);
@@ -40,8 +40,9 @@ char	*ft_utoa_base(unsigned int value, int base)
 
 char	*ft_ltoa_base(long long value, int base)
 {
-	int		len;
-	char	*ret;
+	int				len;
+	int				i;
+	char			*ret;
 	long long		tmp;
 
 	if (base < 2 || base > 16)
@@ -55,18 +56,18 @@ char	*ft_ltoa_base(long long value, int base)
 	ret[len--] = '\0';
 	while (len >= 0 && value / base != 0)
 	{
-		ret[len] = value % base < 10 ? value % base + '0' : value % base + '7';
+		ret[len] = (i = ft_abs(value % base)) < 10 ? i + '0' : i + '7';
 		value /= base;
 		len--;
 	}
-	ret[len--] = value % base < 10 ? value % base + '0' : value % base + '7';
+	ret[len--] = (i = ft_abs(value % base)) < 10 ? i + '0' : i + '7';
 	return (ret);
 }
 
 char	*ft_dtoa_base(double value, int base, int precision, t_arg *a)
 {
-	char	*ret;
-	double	tmp;
+	char			*ret;
+	double			tmp;
 
 	if (base < 2 || base > 16)
 		return (NULL);

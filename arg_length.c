@@ -6,7 +6,7 @@
 /*   By: qdegraev <marvin@42.fr>                    +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2016/02/10 12:13:01 by qdegraev          #+#    #+#             */
-/*   Updated: 2016/02/17 11:55:52 by qdegraev         ###   ########.fr       */
+/*   Updated: 2016/02/17 18:36:37 by qdegraev         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -17,7 +17,12 @@ void	check_min_lenght(char *format, t_arg *a)
 	if (format[a->i] > '0' && format[a->i] <= '9')
 		a->l = ft_atoi(format + a->i);
 	while (format[a->i] >= '0' && format[a->i] <= '9')
-		a->i++;
+	{
+		if (format[a->i + 1] != '\0')
+			a->i++;
+		else
+			return ;
+	}
 	if (format[a->i] == '.')
 		check_precision(format, a);
 	else
@@ -32,7 +37,12 @@ void	check_precision(char *format, t_arg *a)
 	else
 		a->p = 0;
 	while (format[a->i] >= '0' && format[a->i] <= '9')
-		a->i++;
+	{
+		if (format[a->i + 1] != '\0')
+			a->i++;
+		else
+			return ;
+	}
 	check_modifier(format, a);
 }
 
