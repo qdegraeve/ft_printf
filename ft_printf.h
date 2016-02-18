@@ -6,7 +6,7 @@
 /*   By: qdegraev <marvin@42.fr>                    +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2016/02/08 10:56:16 by qdegraev          #+#    #+#             */
-/*   Updated: 2016/02/18 17:21:42 by qdegraev         ###   ########.fr       */
+/*   Updated: 2016/02/18 20:09:12 by qdegraev         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -74,6 +74,13 @@ void				check_min_lenght(char *format, t_arg *a);
 void				check_precision(char *format, t_arg *a);
 void				set_default_precision(char type, t_arg *a);
 void				check_modifier(char *format, t_arg *a);
+
+/*
+**		unicode
+*/
+
+void				unicode_masks(char *wc);
+void				masks_fill(char *mask, char *wc);
 
 int					ft_printf(char *format, ...);
 void				check_type(char *format, t_arg *a);

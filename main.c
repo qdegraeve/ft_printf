@@ -6,7 +6,7 @@
 /*   By: qdegraev <marvin@42.fr>                    +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2016/02/10 14:28:02 by qdegraev          #+#    #+#             */
-/*   Updated: 2016/02/18 17:33:29 by qdegraev         ###   ########.fr       */
+/*   Updated: 2016/02/18 20:47:32 by qdegraev         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -30,8 +30,8 @@ int	main(void)
 	printf("wchar_t * = {%lu} bytes\n", sizeof(wchar_t *));
 	printf("wchar_t = {%lu} bytes\n", sizeof(wchar_t));
 	printf("char = {%lu} bytes\n", sizeof(char));
-	i = printf("vrai %C %#5x %#10.5x %5c\n", 25105, 250, 250, 'q');
-	j = ft_printf("faux %C %#5x %#10.5x %5c\n", 25105, 250, 250, 'q');
+	i = printf("vrai %C %#5x %#10.5x %5c\n", 1935, 250, 250, 'q');
+	j = ft_printf("faux %C %#5x %#10.5x %5c\n", 1935, 250, 250, 'q');
 	printf("printf == {%d} ft_printf == {%d}\n", i, j);
 	return (0);
 }

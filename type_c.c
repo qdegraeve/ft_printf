@@ -6,7 +6,7 @@
 /*   By: qdegraev <marvin@42.fr>                    +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2016/02/15 16:37:34 by qdegraev          #+#    #+#             */
-/*   Updated: 2016/02/18 17:32:22 by qdegraev         ###   ########.fr       */
+/*   Updated: 2016/02/18 20:48:12 by qdegraev         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -30,13 +30,14 @@ void	type_c(t_arg *a)
 void	type_c_lc(char type, t_arg *a)
 {
 	unsigned int	i;
+	char			*s;
+
 	if (type == 'c')
 		type_c(a);
 	else
 	{
 		i = va_arg(a->ap, unsigned int);
-		write(1, &i, 1);
-		i = i << 8;
-		write(1, &i, 1);
+		s = ft_utoa_base(i, 2);
+		unicode_masks(s);
 	}
 }
