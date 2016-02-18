@@ -6,7 +6,7 @@
 #    By: qdegraev <marvin@42.fr>                    +#+  +:+       +#+         #
 #                                                 +#+#+#+#+#+   +#+            #
 #    Created: 2015/12/07 08:41:32 by qdegraev          #+#    #+#              #
-#    Updated: 2016/02/17 17:14:22 by qdegraev         ###   ########.fr        #
+#    Updated: 2016/02/18 12:24:25 by qdegraev         ###   ########.fr        #
 #                                                                              #
 # **************************************************************************** #
 
@@ -30,12 +30,13 @@ SRC = ft_printf.c \
 	ft_putnbru.c \
 	ft_utoa_base.c \
 	type_d_i.c \
-	type_s_S.c \
-	type_x_X.c \
+	type_s.c \
+	type_x.c \
 	type_percent.c \
 	type_f.c \
 	type_c.c \
 	type_u.c \
+	type_o.c \
 
 OBJ = $(SRC:.c=.o)
 

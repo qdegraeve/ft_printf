@@ -6,7 +6,7 @@
 /*   By: qdegraev <marvin@42.fr>                    +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2016/02/08 10:56:16 by qdegraev          #+#    #+#             */
-/*   Updated: 2016/02/17 18:06:37 by qdegraev         ###   ########.fr       */
+/*   Updated: 2016/02/18 17:21:42 by qdegraev         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -28,7 +28,7 @@ typedef struct		s_arg
 	int			f_p;
 	int			f_m;
 	int			f_sp;
-	int			f_hash;
+	int			f_h;
 	int			f_none;
 	int			f_zero;
 	int			l;
@@ -41,26 +41,33 @@ typedef struct		s_arg
 	int			m_j;
 }					t_arg;
 
-/*		tools				*/
+/*
+**		tools
+*/
 
 void				ft_putnbru(unsigned int nb);
 char				*ft_utoa_base(unsigned long long value, int base);
 char				*ft_ltoa_base(long long value, int base);
-char				*ft_dtoa_base(double value, int base, int precision, t_arg *a);
+char				*ft_dtoa_base(double value, int base, int precision,
+		t_arg *a);
 void				ft_repeat_char(char c, int nbr);
 
-/*		type conversion		*/
+/*
+**		type conversion
+*/
 
 void				type_d(char type, t_arg *a);
-void				type_s(char type, t_arg *a);
 void				type_x(char type, t_arg *a);
-void				type_percent(t_arg *a);
 void				type_u(char type, t_arg *a);
-void				type_o(t_arg *a);
+void				type_o(char type, t_arg *a);
+void				type_s_ls(char type, t_arg *a);
+void				type_c_lc(char type, t_arg *a);
+void				type_percent(t_arg *a);
 void				type_f(t_arg *a);
-void				type_c(t_arg *a);
 
-/*		flags				*/
+/*
+**		flags
+*/
 
 void				check_flags(char *format, t_arg *a);
 void				check_min_lenght(char *format, t_arg *a);

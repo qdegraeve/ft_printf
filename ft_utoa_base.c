@@ -6,7 +6,7 @@
 /*   By: qdegraev <marvin@42.fr>                    +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2016/02/12 11:43:33 by qdegraev          #+#    #+#             */
-/*   Updated: 2016/02/17 17:13:07 by qdegraev         ###   ########.fr       */
+/*   Updated: 2016/02/18 10:59:47 by qdegraev         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -56,11 +56,13 @@ char	*ft_ltoa_base(long long value, int base)
 	ret[len--] = '\0';
 	while (len >= 0 && value / base != 0)
 	{
-		ret[len] = (i = ft_abs(value % base)) < 10 ? i + '0' : i + '7';
+		i = ft_abs(value % base);
+		ret[len] = i < 10 ? i + '0' : i + '7';
 		value /= base;
 		len--;
 	}
-	ret[len--] = (i = ft_abs(value % base)) < 10 ? i + '0' : i + '7';
+	i = ft_abs(value % base);
+	ret[len--] = i < 10 ? i + '0' : i + '7';
 	return (ret);
 }
 
@@ -87,9 +89,8 @@ char	*ft_dtoa_base(double value, int base, int precision, t_arg *a)
 	else
 	{
 		value = (10 * (value - (int)value)) > 5 ? value + 1 : value;
-		ret = a->f_hash ? ft_cjoin(ft_itoa_base((int)value, base),
-				ft_strdup(".")) : ft_cjoin(NULL, ft_itoa_base((int)value,
-					base));
+		ret = a->f_h ? ft_cjoin(ft_itoa_base((int)value, base), ft_strdup("."))
+			: ft_cjoin(NULL, ft_itoa_base((int)value, base));
 	}
 	return (ret);
 }

@@ -6,7 +6,7 @@
 /*   By: qdegraev <marvin@42.fr>                    +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2016/02/12 10:39:10 by qdegraev          #+#    #+#             */
-/*   Updated: 2016/02/17 18:15:00 by qdegraev         ###   ########.fr       */
+/*   Updated: 2016/02/18 10:53:17 by qdegraev         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -33,7 +33,7 @@ char	*type_d_std(long long d, t_arg *a)
 		s = a->f_m ? ft_cjoin(s, ft_strdup(" ")) : ft_cjoin(ft_strdup(" "), s);
 		a->ret++;
 	}
-	return(s);
+	return (s);
 }
 
 char	*type_d_zero(long long d, t_arg *a)
@@ -58,7 +58,7 @@ char	*type_d_zero(long long d, t_arg *a)
 		s = a->f_m ? ft_cjoin(s, ft_strdup(" ")) : ft_cjoin(ft_strdup(" "), s);
 		a->ret++;
 	}
-	return(s);
+	return (s);
 }
 
 void	type_d(char type, t_arg *a)

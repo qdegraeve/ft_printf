@@ -6,7 +6,7 @@
 /*   By: qdegraev <marvin@42.fr>                    +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2016/02/10 12:11:48 by qdegraev          #+#    #+#             */
-/*   Updated: 2016/02/15 21:48:06 by qdegraev         ###   ########.fr       */
+/*   Updated: 2016/02/18 11:05:27 by qdegraev         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -14,7 +14,8 @@
 
 void	check_flags(char *f, t_arg *a)
 {
-	while (f[a->i] == '-' || f[a->i] == '+' || f[a->i] == ' ' || f[a->i] == '#' || f[a->i] == '0')
+	while (f[a->i] == '-' || f[a->i] == '+' || f[a->i] == ' ' || f[a->i] == '#'
+			|| f[a->i] == '0')
 	{
 		if (f[a->i] == '-')
 			a->f_m = 1;
@@ -23,13 +24,13 @@ void	check_flags(char *f, t_arg *a)
 		if (f[a->i] == ' ')
 			a->f_sp = 1;
 		if (f[a->i] == '#')
-			a->f_hash = 1;
+			a->f_h = 1;
 		if (f[a->i] == '0')
 			a->f_zero = 1;
 		if (f[a->i + 1] != '\0')
 			a->i++;
 		else
-			return;
+			return ;
 	}
 	check_min_lenght(f, a);
 }

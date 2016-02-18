@@ -6,7 +6,7 @@
 /*   By: qdegraev <marvin@42.fr>                    +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2016/02/10 12:13:01 by qdegraev          #+#    #+#             */
-/*   Updated: 2016/02/17 18:36:37 by qdegraev         ###   ########.fr       */
+/*   Updated: 2016/02/18 14:47:44 by qdegraev         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -50,7 +50,7 @@ void	set_default_precision(char type, t_arg *a)
 {
 	if (a->p == -1 && type != 'd' && type != 'i')
 	{
-		a->p = type == 'c' || type == 's' || type == 'S' ? 0 : 1;
+		a->p = type == 'c' || type == 's' || type == 'S' ? -1 : 1;
 		if (type == 'f' || type == 'e' || type == 'E' || type == 'g' ||
 				type == 'G')
 			a->p = 6;
