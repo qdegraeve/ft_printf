@@ -6,7 +6,7 @@
 #    By: qdegraev <marvin@42.fr>                    +#+  +:+       +#+         #
 #                                                 +#+#+#+#+#+   +#+            #
 #    Created: 2015/12/07 08:41:32 by qdegraev          #+#    #+#              #
-#    Updated: 2016/02/18 20:10:34 by qdegraev         ###   ########.fr        #
+#    Updated: 2016/02/19 12:56:10 by qdegraev         ###   ########.fr        #
 #                                                                              #
 # **************************************************************************** #
 
@@ -37,6 +37,7 @@ SRC = ft_printf.c \
 	type_c.c \
 	type_u.c \
 	type_o.c \
+	type_p.c \
 	ft_wchar.c \
 
 OBJ = $(SRC:.c=.o)

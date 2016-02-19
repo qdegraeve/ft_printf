@@ -6,7 +6,7 @@
 /*   By: qdegraev <marvin@42.fr>                    +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2016/02/08 10:56:16 by qdegraev          #+#    #+#             */
-/*   Updated: 2016/02/18 20:09:12 by qdegraev         ###   ########.fr       */
+/*   Updated: 2016/02/19 19:01:59 by qdegraev         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -51,6 +51,8 @@ char				*ft_ltoa_base(long long value, int base);
 char				*ft_dtoa_base(double value, int base, int precision,
 		t_arg *a);
 void				ft_repeat_char(char c, int nbr);
+char				*str_lower(char *str);
+void				count_ret(char **to_print, t_arg *a);
 
 /*
 **		type conversion
@@ -64,6 +66,7 @@ void				type_s_ls(char type, t_arg *a);
 void				type_c_lc(char type, t_arg *a);
 void				type_percent(t_arg *a);
 void				type_f(t_arg *a);
+void				type_p(t_arg *a);
 
 /*
 **		flags
@@ -79,8 +82,10 @@ void				check_modifier(char *format, t_arg *a);
 **		unicode
 */
 
-void				unicode_masks(char *wc);
+char				**unicode_masks(char *wc);
 void				masks_fill(char *mask, char *wc);
+void				print_wchar(char **to_print);
+unsigned char		*stock_wchar(char **to_print);
 
 int					ft_printf(char *format, ...);
 void				check_type(char *format, t_arg *a);

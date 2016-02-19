@@ -6,11 +6,23 @@
 /*   By: qdegraev <marvin@42.fr>                    +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2016/02/10 12:14:44 by qdegraev          #+#    #+#             */
-/*   Updated: 2016/02/18 17:24:04 by qdegraev         ###   ########.fr       */
+/*   Updated: 2016/02/19 20:21:02 by qdegraev         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
 #include "ft_printf.h"
+
+void	invalid_conv(char to_print, t_arg *a)
+{
+	a->ret = a->l ? a->l : 1;
+	if (!a->f_m)
+		a->f_zero ? ft_repeat_char('0', a->l - 1)
+			: ft_repeat_char(' ', a->l - 1);
+	ft_putchar(to_print);
+	if (a->f_m)
+		a->f_zero ? ft_repeat_char('0', a->l - 1)
+			: ft_repeat_char(' ', a->l - 1);
+}
 
 void	check_type(char *format, t_arg *a)
 {
@@ -31,9 +43,8 @@ void	check_type(char *format, t_arg *a)
 		type_f(a);
 	else if (format[a->i] == 'c' || format[a->i] == 'C')
 		type_c_lc(format[a->i], a);
+	else if (format[a->i] == 'p')
+		type_p(a);
 	else
-	{
-		ft_putchar(format[a->i]);
-		a->ret++;
-	}
+		invalid_conv(format[a->i], a);
 }
