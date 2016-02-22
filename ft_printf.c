@@ -6,7 +6,7 @@
 /*   By: qdegraev <marvin@42.fr>                    +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2016/02/05 12:36:34 by qdegraev          #+#    #+#             */
-/*   Updated: 2016/02/18 12:23:59 by qdegraev         ###   ########.fr       */
+/*   Updated: 2016/02/22 13:13:59 by qdegraev         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -68,9 +68,8 @@ int		ft_printf(char *format, ...)
 		init_struct(&a);
 		if (format[a.i] == '%')
 		{
-			if (format[a.i + 1] == '\0')
+			if (format[++a.i] == '\0')
 				break ;
-			a.i++;
 			check_flags(format, &a);
 		}
 		else

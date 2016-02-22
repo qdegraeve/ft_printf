@@ -6,7 +6,7 @@
 /*   By: qdegraev <marvin@42.fr>                    +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2016/02/18 11:03:40 by qdegraev          #+#    #+#             */
-/*   Updated: 2016/02/19 20:22:24 by qdegraev         ###   ########.fr       */
+/*   Updated: 2016/02/22 10:34:06 by qdegraev         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -34,7 +34,7 @@ void	type_s(t_arg *a)
 	}
 	a->p == -1 ? ft_putstr(s) : 0;
 	if (a->f_m && s[0])
-		a->f_zero ? ft_repeat_char('0', i) : ft_repeat_char(' ', i);
+		ft_repeat_char(' ', i);
 	if (i > 0 && s[0] && a->p != 0)
 		a->ret += i;
 	ft_strdel(&s);
@@ -70,7 +70,7 @@ void	type_ls(wchar_t *ws, t_arg *a)
 	a->ret = ft_strlen(t);
 	a->f_m ? write(1, t, a->ret) : 0;
 	if ((i = a->l - a->ret))
-		a->f_zero ? ft_repeat_char('0', i) : ft_repeat_char(' ', i);
+		a->f_zero && !a->f_m ? ft_repeat_char('0', i) : ft_repeat_char(' ', i);
 	!a->f_m ? write(1, t, a->ret) : 0;
 	ft_strdel(&t);
 	a->ret = a->l > a->ret ? a->l : a->ret;

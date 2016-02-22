@@ -6,7 +6,7 @@
 /*   By: qdegraev <marvin@42.fr>                    +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2016/02/12 11:43:33 by qdegraev          #+#    #+#             */
-/*   Updated: 2016/02/18 20:13:37 by qdegraev         ###   ########.fr       */
+/*   Updated: 2016/02/22 12:57:03 by qdegraev         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -66,6 +66,16 @@ char	*ft_ltoa_base(long long value, int base)
 	return (ret);
 }
 
+char	*precision_zero(double value, int base, t_arg *a)
+{
+	char	*ret;
+
+	value = (10 * (value - (int)value)) > 5 ? value + 1 : value;
+	ret = a->f_h ? ft_cjoin(ft_ltoa_base((int)value, base), ft_strdup("."))
+		: ft_cjoin(NULL, ft_ltoa_base((int)value, base));
+	return (ret);
+}
+
 char	*ft_dtoa_base(double value, int base, int precision, t_arg *a)
 {
 	char			*ret;
@@ -75,22 +85,20 @@ char	*ft_dtoa_base(double value, int base, int precision, t_arg *a)
 		return (NULL);
 	if (precision > 0)
 	{
-		ret = ft_cjoin(NULL, ft_itoa_base((int)value, base));
-		tmp = value - (int)value;
-		while ((value = value - (int)value) && precision > 0)
+		ret = ft_cjoin(NULL, ft_ltoa_base((int)value, base));
+		tmp = value < 0 ? -1 * (value - (int)value) : value - (int)value;
+		value = tmp;
+		while ((value = value - (int)value) > 0 && precision > 0)
 		{
 			tmp = tmp * 10;
 			value = tmp;
 			precision--;
 		}
 		ret = ft_cjoin(ret, ft_strdup("."));
-		ret = ft_cjoin(ret, ft_itoa_base(tmp, base));
+		tmp = value > 0.5 ? tmp + 1 : tmp;
+		ret = ft_cjoin(ret, ft_ltoa_base(tmp, base));
 	}
 	else
-	{
-		value = (10 * (value - (int)value)) > 5 ? value + 1 : value;
-		ret = a->f_h ? ft_cjoin(ft_itoa_base((int)value, base), ft_strdup("."))
-			: ft_cjoin(NULL, ft_itoa_base((int)value, base));
-	}
+		ret = precision_zero(value, base, a);
 	return (ret);
 }

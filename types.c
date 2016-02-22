@@ -6,7 +6,7 @@
 /*   By: qdegraev <marvin@42.fr>                    +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2016/02/10 12:14:44 by qdegraev          #+#    #+#             */
-/*   Updated: 2016/02/19 20:21:02 by qdegraev         ###   ########.fr       */
+/*   Updated: 2016/02/22 10:43:35 by qdegraev         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -39,7 +39,7 @@ void	check_type(char *format, t_arg *a)
 		type_o(format[a->i], a);
 	else if (format[a->i] == 'u' || format[a->i] == 'U')
 		type_u(format[a->i], a);
-	else if (format[a->i] == 'f')
+	else if (format[a->i] == 'f' || format[a->i] == 'F')
 		type_f(a);
 	else if (format[a->i] == 'c' || format[a->i] == 'C')
 		type_c_lc(format[a->i], a);

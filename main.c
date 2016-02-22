@@ -6,7 +6,7 @@
 /*   By: qdegraev <marvin@42.fr>                    +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2016/02/10 14:28:02 by qdegraev          #+#    #+#             */
-/*   Updated: 2016/02/19 19:58:12 by qdegraev         ###   ########.fr       */
+/*   Updated: 2016/02/22 13:15:54 by qdegraev         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -33,8 +33,8 @@ int	main(void)
 	i = printf("vrai %4S %5p %#10.5x %5c\n", L"ÊM-^HM-^QÊM-^XØ‰∏M-ÂM-^O™ÁM-^L´„M-M-^B", NULL, 250, 'q');
 	j = ft_printf("faux %4S %5p %#10.5x %5c\n", L"ÊM-^HM-^QÊM-^XØ‰∏M-ÂM-^O™ÁM-^L´„M-M-^B", NULL, 250, 'q');
 	printf("printf == {%d} ft_printf == {%d}\n", i, j);
-	i = printf("{%ls}\n", L"");
-	j = ft_printf("{%ls}\n", L"");
+	i = printf("{vrai %*d}\n", 0, 0);
+	j = ft_printf("{faux %*d}\n", 0, 0);
 	printf("printf == {%d} ft_printf == {%d}\n", i, j);
 	return (0);
 }
